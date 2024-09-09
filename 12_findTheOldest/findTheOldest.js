@@ -1,9 +1,12 @@
 const findTheOldest = function(people) {
+    const thisYear = new Date().getFullYear();
     return people.reduce((oldest, person) => {
-        // Calculate the age of the current person and the oldest found so far
-        const currentAge = person.yearOfDeath - person.yearOfBirth;
-        const oldestAge = oldest.yearOfDeath - oldest.yearOfBirth;
-        // Return the person with the greater age
+        const currentPersonDeathYear = person.yearOfDeath || thisYear;
+        const oldestPersonDeathYear = oldest.yearOfDeath || thisYear;
+
+        const currentAge = currentPersonDeathYear - person.yearOfBirth;
+        const oldestAge = oldestPersonDeathYear - oldest.yearOfBirth; 
+        
         return currentAge > oldestAge ? person : oldest;
       });
 };
